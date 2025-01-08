@@ -5,12 +5,15 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import HomeLayout from './Components/Layouts/HomeLayout';
+import ErrorPage from './Components/Pages/ErrorPage';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <HomeLayout></HomeLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
   },
 ]);
 
