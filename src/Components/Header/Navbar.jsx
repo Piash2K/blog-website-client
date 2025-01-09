@@ -18,7 +18,7 @@ const Navbar = () => {
         Home
       </NavLink>
       <NavLink
-        to="/add-blog"
+        to="/addBlog"
         className={({ isActive }) =>
           isActive
             ? "text-white bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-4 py-2 rounded-lg font-semibold shadow-md"
@@ -98,7 +98,7 @@ const Navbar = () => {
             className="text-3xl font-bold hidden lg:block tracking-wide"
           >
             <span className="text-purple-200">Blog</span>
-            <span className="text-purple-300">Spotter</span>
+            <span className="text-purple-300">Website</span>
           </Link>
         </div>
 
