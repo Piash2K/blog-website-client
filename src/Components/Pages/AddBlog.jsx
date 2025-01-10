@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const AddBlog = () => {
@@ -34,8 +35,8 @@ const AddBlog = () => {
     e.preventDefault();
     const completeFormData = { ...formData, authorEmail, postedTime };
 
-    axiosSecure
-      .post("/blogs", completeFormData, { withCredentials: "include" })
+    axios
+      .post("http://localhost:5000/blogs", completeFormData)
       .then((res) => {
         if (res.data.acknowledged) {
           Swal.fire({
@@ -55,7 +56,6 @@ const AddBlog = () => {
       })
       .catch(() => {
         Swal.fire({
-          position: "top-center",
           icon: "error",
           title: "Failed to add your blog",
           showConfirmButton: true,
