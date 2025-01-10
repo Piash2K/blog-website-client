@@ -28,7 +28,7 @@ const Navbar = () => {
         Add Blog
       </NavLink>
       <NavLink
-        to="/all-blogs"
+        to="/allBlogs"
         className={({ isActive }) =>
           isActive
             ? "text-white bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-4 py-2 rounded-lg font-semibold shadow-md"
@@ -38,7 +38,7 @@ const Navbar = () => {
         All Blogs
       </NavLink>
       <NavLink
-        to="/featured-blogs"
+        to="/featuredBlogs"
         className={({ isActive }) =>
           isActive
             ? "text-white bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-4 py-2 rounded-lg font-semibold shadow-md"
