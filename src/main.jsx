@@ -15,6 +15,7 @@ import RecentBlogs from './Components/Pages/RecentBlogs';
 import Home from './Components/Pages/Home';
 import AllBlogs from './Components/Pages/AllBlogs';
 import FeaturedBlogs from './Components/Pages/FeaturedBlogs';
+import BlogDetails from './Components/Pages/BlogDetails';
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
       {
         path: '/featuredBlogs',
         element: <FeaturedBlogs></FeaturedBlogs>
+      },
+      {
+        path: "/blogs/:id",
+        element: <BlogDetails></BlogDetails>,
+        loader: ({ params }) =>fetch(`http://localhost:5000/blogs/${params.id}`),
       }
     ]
   },
