@@ -14,6 +14,7 @@ import AddBlog from './Components/Pages/AddBlog';
 import RecentBlogs from './Components/Pages/RecentBlogs';
 import Home from './Components/Pages/Home';
 import AllBlogs from './Components/Pages/AllBlogs';
+import FeaturedBlogs from './Components/Pages/FeaturedBlogs';
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/allBlogs',
         element: <AllBlogs></AllBlogs>
+      },
+      {
+        path: '/featuredBlogs',
+        element: <FeaturedBlogs></FeaturedBlogs>
       }
     ]
   },

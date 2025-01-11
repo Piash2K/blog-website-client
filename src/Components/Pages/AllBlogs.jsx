@@ -80,7 +80,7 @@ const AllBlogs = () => {
             return;
         }
 
-        const newWish = {
+        const newWishlist = {
             blogId: _id,
             userName: user.displayName,
             userEmail: user.email,
@@ -89,7 +89,7 @@ const AllBlogs = () => {
         };
 
         axios
-            .post("http://localhost:5000/wishlist", newWish)
+            .post("http://localhost:5000/wishlist", newWishlist)
             .then((res) => {
                 if (res.status === 200 && res.data.acknowledged) {
                     Swal.fire({
