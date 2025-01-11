@@ -1,28 +1,26 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 
+const UpdateBlog = () => {
+  const data = useLoaderData();
+  const {
+    title: defaultTitle,
+    imageUrl: defaultImageUrl,
+    category: defaultCategory,
+    shortDescription: defaultShortDescription,
+    longDescription: defaultLongDescription,
+    _id,
+  } = data[0];
 
-const AddBlog = () => {
   const [formData, setFormData] = useState({
-    title: "",
-    imageUrl: "",
-    category: "",
-    shortDescription: "",
-    longDescription: "",
+    title: defaultTitle,
+    imageUrl: defaultImageUrl,
+    category: defaultCategory,
+    shortDescription: defaultShortDescription,
+    longDescription: defaultLongDescription,
   });
-  const { user, loading } = useContext(AuthContext);
-  const authorEmail = user.email;
-  const postedTime = new Date().toISOString();
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="loading loading-spinner text-info text-5xl"></div>
-      </div>
-    );
-  }
 
   const categories = ["Technology", "News", "Business & Finance", "Lifestyle", "Education", "Entertainment"];
 
@@ -33,46 +31,36 @@ const AddBlog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const completeFormData = { ...formData, authorEmail, postedTime };
 
-    axios
-      .post("http://localhost:5000/blogs", completeFormData)
-      .then((res) => {
-        if (res.data.acknowledged) {
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Your blog has been added successfully",
-            showConfirmButton: true,
-          });
-          setFormData({
-            title: "",
-            imageUrl: "",
-            category: "",
-            shortDescription: "",
-            longDescription: "",
-          });
-        }
-      })
-      .catch(() => {
+    axios.patch(`http://localhost:5000/update/${_id}`, formData).then((res) => {
+      if (res.data.modifiedCount > 0) {
         Swal.fire({
-          icon: "error",
-          title: "Failed to add your blog",
+          position: "top-center",
+          icon: "success",
+          title: "Your blog has been updated successfully",
           showConfirmButton: true,
         });
-      });
+      } else {
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: "Your blog could not be updated",
+          showConfirmButton: true,
+        });
+      }
+    });
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r  px-4">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r px-4">
       <form
         onSubmit={handleSubmit}
-        className=" border rounded-lg shadow-lg p-8 w-full max-w-2xl space-y-6"
+        className="border rounded-lg shadow-lg p-8 w-full max-w-2xl space-y-6"
       >
-        <h2 className="text-4xl font-bold  text-center">Add Blog</h2>
+        <h2 className="text-4xl font-bold text-center">Update Blog</h2>
 
         <div>
-          <label htmlFor="title" className="block text-sm font-medium ">
+          <label htmlFor="title" className="block text-sm font-medium">
             Title
           </label>
           <input
@@ -88,7 +76,7 @@ const AddBlog = () => {
         </div>
 
         <div>
-          <label htmlFor="imageUrl" className="block text-sm font-medium ">
+          <label htmlFor="imageUrl" className="block text-sm font-medium">
             Image URL
           </label>
           <input
@@ -104,7 +92,7 @@ const AddBlog = () => {
         </div>
 
         <div>
-          <label htmlFor="category" className="block text-sm font-medium ">
+          <label htmlFor="category" className="block text-sm font-medium">
             Category
           </label>
           <select
@@ -125,7 +113,7 @@ const AddBlog = () => {
         </div>
 
         <div>
-          <label htmlFor="shortDescription" className="block text-sm font-medium ">
+          <label htmlFor="shortDescription" className="block text-sm font-medium">
             Short Description
           </label>
           <textarea
@@ -141,7 +129,7 @@ const AddBlog = () => {
         </div>
 
         <div>
-          <label htmlFor="longDescription" className="block text-sm font-medium ">
+          <label htmlFor="longDescription" className="block text-sm font-medium">
             Long Description
           </label>
           <textarea
@@ -160,11 +148,11 @@ const AddBlog = () => {
           type="submit"
           className="w-full bg-purple-600 text-white font-medium py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
         >
-          Submit
+          Update Blog
         </button>
       </form>
     </div>
   );
 };
 
-export default AddBlog;
+export default UpdateBlog;

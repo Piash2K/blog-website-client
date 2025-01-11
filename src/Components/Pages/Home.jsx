@@ -8,7 +8,6 @@ const Home = () => {
         <div>
             <RecentBlogs></RecentBlogs>
             <Newsletter></Newsletter>
-            <Footer></Footer>
         </div>
     );
 };
