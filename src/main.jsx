@@ -16,6 +16,7 @@ import Home from './Components/Pages/Home';
 import AllBlogs from './Components/Pages/AllBlogs';
 import FeaturedBlogs from './Components/Pages/FeaturedBlogs';
 import BlogDetails from './Components/Pages/BlogDetails';
+import WishList from './Components/Pages/WishList';
 
 
 const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         path: "/blogs/:id",
         element: <BlogDetails></BlogDetails>,
         loader: ({ params }) =>fetch(`http://localhost:5000/blogs/${params.id}`),
+      },
+      {
+        path: "/wishlist",
+        element: <WishList></WishList>
       }
     ]
   },
