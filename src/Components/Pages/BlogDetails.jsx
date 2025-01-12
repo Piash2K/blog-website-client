@@ -71,9 +71,11 @@ const BlogDetails = () => {
     }
     const newComment = {
       blogId: _id,
+      blogTitle: title,
       userName: user.displayName,
       userProfilePicture: user.photoURL,
       comment: commentText,
+    
     };
 
     fetch("http://localhost:5000/comments", {
