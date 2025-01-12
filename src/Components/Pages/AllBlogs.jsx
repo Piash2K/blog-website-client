@@ -13,14 +13,7 @@ const AllBlogs = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const { user } = useContext(AuthContext);
 
-    const categories = [
-        "Technology",
-        "News",
-        "Business & Finance",
-        "Lifestyle",
-        "Education",
-        "Entertainment",
-    ];
+    const categories = ["Technology", "News", "Business & Finance", "Lifestyle", "Education", "Entertainment"];
 
     const numberOfPages = Math.ceil(count / itemsPerPage);
     const pages = [...Array(numberOfPages).keys()];
@@ -37,8 +30,7 @@ const AllBlogs = () => {
     }, []);
 
     useEffect(() => {
-        const query = `http://localhost:5000/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${selectedCategory}` : ""
-            }${searchQuery ? `&search=${searchQuery}` : ""}`;
+        const query = `http://localhost:5000/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""}${searchQuery ? `&search=${searchQuery}` : ""}`;
 
         fetch(query)
             .then((res) => res.json())
@@ -153,7 +145,7 @@ const AllBlogs = () => {
                     <select
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="p-2 bg-gray-100 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm "
+                        className="p-2 bg-gray-100 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
                     >
                         <option value="">All Categories</option>
                         {categories.map((category) => (

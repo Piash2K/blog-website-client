@@ -23,7 +23,7 @@ const RecentComments = () => {
     }, []);
 
     return (
-        <div className="recent-comments w-full bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 py-16 text-white">
+        <div className="recent-comments w-full">
             <div className="max-w-screen-xl mx-auto px-6">
                 <h2 className="text-center text-5xl font-extrabold mb-12">
                     Recent Comments

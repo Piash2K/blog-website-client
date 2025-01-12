@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="py-16 mt-20">
+        <footer className="py-16 mt-20 bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700  text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <h2 className="text-xl font-bold mb-4">Blog Website</h2>
-                        <p className="text-gray-400 text-sm w-10/12">
+                        <p className=" text-sm w-10/12">
                             Explore insightful articles, the latest news, and updates on various topics to keep you informed, inspired, and engaged.
                         </p>
                     </div>
@@ -18,21 +18,21 @@ const Footer = () => {
                             <h2 className="text-lg font-semibold mb-4">Explore</h2>
                             <ul>
                                 <li>
-                                    <Link><p className='text-gray-400'>About Us</p>
+                                    <Link><p >About Us</p>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to='/allReviews'><p className='text-gray-400'>
+                                    <Link to='/allReviews'><p>
                                         Reviews
                                     </p></Link>
                                 </li>
                                 <li>
-                                    <a className='text-gray-400'>
+                                    <a>
                                         Contact
                                     </a>
                                 </li>
                                 <li>
-                                    <a className='text-gray-400'>
+                                    <a>
                                         Privacy Policy
                                     </a>
                                 </li>
@@ -66,7 +66,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mt-8 text-center text-gray-400 text-sm">
+                <div className="mt-8 text-center text-sm">
                     &copy; {new Date().getFullYear()} Blog Website. All rights reserved.
                 </div>
             </div>
