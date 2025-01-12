@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAxiosSecure from "../Axios/UseAxiosSecure";
 
 const WishList = () => {
   const [data, setData] = useState([]);
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/wishlist?email=${user.email}`
+        const response = await axiosSecure.get(
+          `wishlist?email=${user.email}`
         );
         setData(response.data);
       } catch (error) {
@@ -24,7 +26,7 @@ const WishList = () => {
     if (user?.email) {
       fetchWishlist();
     }
-  }, [user?.email]);
+  }, [user?.email,axiosSecure]);
 
   // Handle Remove Item
   const handleRemove = async (itemId) => {

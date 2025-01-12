@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxiosSecure from "../Axios/UseAxiosSecure";
 
 
 const AddBlog = () => {
@@ -15,6 +16,7 @@ const AddBlog = () => {
   const { user, loading } = useContext(AuthContext);
   const authorEmail = user.email;
   const postedTime = new Date().toISOString();
+  const axiosSecure = useAxiosSecure();
 
   if (loading) {
     return (
@@ -35,8 +37,8 @@ const AddBlog = () => {
     e.preventDefault();
     const completeFormData = { ...formData, authorEmail, postedTime };
 
-    axios
-      .post("http://localhost:5000/blogs", completeFormData)
+    axiosSecure
+      .post("/blogs", completeFormData)
       .then((res) => {
         if (res.data.acknowledged) {
           Swal.fire({
