@@ -20,7 +20,7 @@ const WishList = () => {
         );
         setData(response.data);
       } catch (error) {
-        console.error("Error fetching wishlist data:", error);
+        // console.error("Error fetching wishlist data:", error);
       }
     };
 
@@ -45,7 +45,7 @@ const WishList = () => {
         setData((prevData) => prevData.filter((item) => item._id !== itemId));
       }
     } catch (error) {
-      console.error("Error removing item from wishlist:", error);
+      // console.error("Error removing item from wishlist:", error);
     }
   };
 

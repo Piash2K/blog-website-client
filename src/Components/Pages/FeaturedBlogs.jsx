@@ -18,7 +18,7 @@ const FeaturedBlogs = () => {
         const response = await axios.get("https://blog-website-server-nine.vercel.app/featuredBlogs");
         setData(response.data.slice(0, 10)); // Top 10 featured blogs
       } catch (error) {
-        console.error("Error fetching featured blogs:", error);
+        // console.error("Error fetching featured blogs:", error);
       } finally {
         setLoading(false);
       }

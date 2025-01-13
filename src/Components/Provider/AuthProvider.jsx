@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const googleProvider = new GoogleAuthProvider();
-    console.log(googleProvider)
+    // console.log(googleProvider)
 
     const logOut = () => {
         setLoading(true);
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
             .catch((error) => {
                 toast.error('An error occurred during logout.');
                 setLoading(false);
-                console.error(error);
+                // console.error(error);
             });
     };
 
@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
                         { withCredentials: true }
                     )
                     .then((res) => {
-                        console.log("logout", res.data);
+                        // console.log("logout", res.data);
                         setLoading(false);
                     });
             }
