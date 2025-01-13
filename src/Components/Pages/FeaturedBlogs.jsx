@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
@@ -75,6 +76,45 @@ const FeaturedBlogs = () => {
       });
   };
 
+  // Columns for DataTable
+  const columns = [
+    {
+      name: "No.",
+      selector: (row, index) => index + 1,
+    },
+    {
+      name: "Title",
+      selector: (row) => row.title,
+      sortable: true,
+    },
+    {
+      name: "Category",
+      selector: (row) => row.category,
+      sortable: true,
+    },
+    {
+      name: "Posted Date",
+      selector: (row) => new Date(row.postedTime).toLocaleDateString(),
+      sortable: true,
+    },
+    {
+      name: "Actions",
+      cell: (row) => (
+        <div className="flex flex-col gap-2 lg:flex-row  space-x-2">
+          <Link to={`/blogs/${row._id}`} className="px-5 ml-2 py-2 rounded-md text-white bg-purple-600 hover:bg-purple-700 transition duration-200">
+            Details
+          </Link>
+          <button
+            onClick={() => handleWishList(row._id, row.category, row.title)}
+            className="px-5 py-2 rounded-md ml-2 text-white bg-pink-600 hover:bg-pink-700 transition duration-200"
+          >
+            Wishlist
+          </button>
+        </div>
+      ),
+    },
+  ];
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -85,56 +125,39 @@ const FeaturedBlogs = () => {
 
   return (
     <div className="mt-8">
-      <h2 className="text-center text-4xl font-bold mb-8 ">
-        Top 10 Featured Blogs
-      </h2>
-      <div className="overflow-x-auto shadow-xl rounded-lg">
-        <table className="table-auto w-full text-center border-collapse">
-          <thead className="bg-gradient-to-r from-purple-600 to-purple-800 text-white">
-            <tr>
-              <th className="py-3 px-5 text-lg font-semibold">No.</th>
-              <th className="py-3 px-5 text-lg font-semibold">Title</th>
-              <th className="py-3 px-5 text-lg font-semibold">Category</th>
-              <th className="py-3 px-5 text-lg font-semibold">Posted Date</th>
-              <th className="py-3 px-5 text-lg font-semibold">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((blog, index) => (
-              <tr
-                key={blog._id}
-                className="hover:bg-gray-100 transition duration-200"
-              >
-                <th className="py-3 px-5 text-lg font-semibold">{index + 1}</th>
-                <td className="py-3 px-5 text-lg font-semibold">{blog.title}</td>
-                <td className="py-3 px-5 text-lg font-semibold">
-                  {blog.category}
-                </td>
-                <td className="py-3 px-5 text-lg font-semibold">
-                  {new Date(blog.postedTime).toLocaleDateString()}
-                </td>
-                <td className="py-3 px-5 text-lg font-semibold">
-                  <Link
-                    to={`/blogs/${blog._id}`}
-                    className="inline-block mb-2"
-                  >
-                    <button className="px-5 py-2 rounded-md text-white bg-purple-600 hover:bg-purple-700 transition duration-200">
-                      Details
-                    </button>
-                  </Link>
-                  <button
-                    onClick={() =>
-                      handleWishList(blog._id, blog.category, blog.title)
-                    }
-                    className="px-5 py-2 rounded-md ml-2 text-white bg-pink-600 hover:bg-pink-700 transition duration-200"
-                  >
-                    Wishlist
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <h2 className="text-center text-4xl font-bold mb-8">Top 10 Featured Blogs</h2>
+      <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">
+        <DataTable
+          columns={columns}
+          data={data}
+          highlightOnHover
+          responsive
+          customStyles={{
+            headCells: {
+              style: {
+                backgroundColor: "#6a5acd",
+                color: "white",
+                fontWeight: "bold",
+                fontSize: "16px",
+                padding: "12px 8px",
+              },
+            },
+            cells: {
+              style: {
+                padding: "12px 0px 12px 5px",
+                fontSize: "16px",
+                textAlign: "center",
+              },
+            },
+            rows: {
+              style: {
+                "&:hover": {
+                  backgroundColor: "#f3e8ff",
+                },
+              },
+            }
+          }}
+        />
       </div>
     </div>
   );

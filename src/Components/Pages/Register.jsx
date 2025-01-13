@@ -5,7 +5,6 @@ import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
 
-
 const Register = () => {
     const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -15,14 +14,20 @@ const Register = () => {
     const [error, setError] = useState('');
 
     const validatePassword = (password) => {
-        if (!/[A-Z]/.test(password)) {
-            return 'Password must have at least one uppercase & one lowercase letter.';
-        }
-        if (!/[a-z]/.test(password)) {
-            return 'Password must have at least one uppercase & one lowercase letter.';
-        }
         if (password.length < 6) {
-            return 'Password must be at least 6 characters long.';
+            return "Password must be at least 6 characters long.";
+        }
+        if (!/(?=.*[A-Z])/.test(password)) {
+            return "Password must contain at least one uppercase letter.";
+        }
+        if (!/(?=.*[a-z])/.test(password)) {
+            return "Password must contain at least one lowercase letter.";
+        }
+        if (!/(?=.*\d)/.test(password)) {
+            return "Password must contain at least one number.";
+        }
+        if (!/(?=.*[!@#$%^&*(),.?":{}|<>])/.test(password)) {
+            return "Password must contain at least one special character.";
         }
         return '';
     };

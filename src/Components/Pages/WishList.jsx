@@ -26,13 +26,13 @@ const WishList = () => {
     if (user?.email) {
       fetchWishlist();
     }
-  }, [user?.email,axiosSecure]);
+  }, [user?.email, axiosSecure]);
 
   // Handle Remove Item
   const handleRemove = async (itemId) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/wishlist/${itemId}`,{withCredentials: true,}
+        `http://localhost:5000/wishlist/${itemId}`, { withCredentials: true, }
       );
       if (res.data.deletedCount > 0) {
         Swal.fire({
@@ -67,10 +67,10 @@ const WishList = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className="flex space-x-2">
+        <div className="flex flex-col gap-2 lg:flex-row space-x-2">
           <Link
             to={`/blogs/${row.blogId}`}
-            className="px-5 py-2 rounded-md text-white bg-purple-600 hover:bg-purple-700 transition duration-200"
+            className="px-5 py-2 ml-2 rounded-md text-white bg-purple-600 hover:bg-purple-700 transition duration-200"
           >
             Details
           </Link>
@@ -88,7 +88,7 @@ const WishList = () => {
   return (
     <div className="mt-8">
       <h1 className="text-4xl font-bold text-center mb-8">Your Wishlist</h1>
-      <div className="overflow-x-auto shadow-xl rounded-lg">
+      <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">
         <DataTable
           columns={columns}
           data={data}
@@ -107,9 +107,9 @@ const WishList = () => {
             },
             cells: {
               style: {
-                padding: "12px 8px",
+                padding: "12px 0px 12px 5px",
                 fontSize: "16px",
-                textAlign: "center", 
+                textAlign: "center",
               },
             },
             rows: {
