@@ -2,9 +2,11 @@ import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxiosSecure from "../Axios/UseAxiosSecure";
 
 const UpdateBlog = () => {
   const data = useLoaderData();
+  const axiosSecure = useAxiosSecure();
   const {
     title: defaultTitle,
     imageUrl: defaultImageUrl,
@@ -32,7 +34,7 @@ const UpdateBlog = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.patch(`http://localhost:5000/update/${_id}`, formData).then((res) => {
+    axiosSecure.patch(`update/${_id}`, formData).then((res) => {
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-center",

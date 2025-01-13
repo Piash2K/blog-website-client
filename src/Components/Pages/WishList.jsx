@@ -32,7 +32,7 @@ const WishList = () => {
   const handleRemove = async (itemId) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/wishlist/${itemId}`
+        `http://localhost:5000/wishlist/${itemId}`,{withCredentials: true,}
       );
       if (res.data.deletedCount > 0) {
         Swal.fire({

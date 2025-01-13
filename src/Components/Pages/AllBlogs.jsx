@@ -11,26 +11,29 @@ const AllBlogs = () => {
     const [count, setCount] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
 
     const categories = ["Technology", "News", "Business & Finance", "Lifestyle", "Education", "Entertainment"];
 
     const numberOfPages = Math.ceil(count / itemsPerPage);
     const pages = [...Array(numberOfPages).keys()];
 
+    // Fetch total blog count for pagination
     useEffect(() => {
         fetch("http://localhost:5000/blogsCount")
             .then((res) => res.json())
             .then((data) => {
                 setCount(data.count);
             })
-            .catch((error) => {
-                console.error("Error fetching blogs count:", error.message);
+            .catch(() => {
+                // console.log('error', error.message)
             });
     }, []);
 
+    // Fetch blogs based on pagination, category, and search query
     useEffect(() => {
-        const query = `http://localhost:5000/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""}${searchQuery ? `&search=${searchQuery}` : ""}`;
+        const query = `http://localhost:5000/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""
+            }${searchQuery ? `&search=${searchQuery}` : ""}`;
 
         fetch(query)
             .then((res) => res.json())
@@ -38,8 +41,9 @@ const AllBlogs = () => {
                 setBlogs(data);
             })
             .catch(() => {
-                console.error("Error fetching blogs");
+                // console.error('Error')
             });
+
     }, [currentPage, itemsPerPage, selectedCategory, searchQuery]);
 
     const handleItemsPerPage = (e) => {
@@ -58,9 +62,10 @@ const AllBlogs = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        setCurrentPage(0);
+        setCurrentPage(0); // Reset to first page when performing a new search
     };
 
+    // Adding data to wishlist
     const handleWishList = (_id, category, title) => {
         if (!user?.email) {
             Swal.fire({
@@ -115,12 +120,14 @@ const AllBlogs = () => {
         <div className="shop-container p-4">
             <h1 className="text-3xl font-bold text-center mb-6">All Blogs</h1>
 
+
             <div>
                 {/* Filter Bar */}
                 <div className="filter-bar flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
                     <div className="text-lg font-semibold text-gray-800">
-                        Total Blogs: {blogs.length}
+                        Total Blogs: {count}
                     </div>
+
                     {/* Search Bar */}
                     <form
                         onSubmit={handleSearch}
@@ -161,44 +168,37 @@ const AllBlogs = () => {
                     {blogs?.map((blog) => (
                         <div
                             key={blog._id}
-                            className="rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col bg-gradient-to-r from-gray-100 via-white to-gray-100 border border-gray-200"
+                            className="blog-card border rounded-lg p-4 shadow-md flex flex-col justify-between"
                         >
                             <img
                                 src={blog.imageUrl}
                                 alt={blog.title}
-                                className="w-full h-48 object-cover"
+                                className="w-full h-48 object-cover rounded-md"
                             />
-                            <div className="p-6 flex flex-col flex-grow">
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-3">
-                                    {blog.title}
-                                </h3>
-                                <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                                    {blog.shortDescription.length > 120
-                                        ? `${blog.shortDescription.slice(0, 120)}...`
-                                        : blog.shortDescription}
+                            <div className="mt-4">
+                                <h2 className="text-lg font-semibold">{blog.title}</h2>
+                                <p className="text-gray-600 text-sm mt-2">
+                                    {blog.shortDescription}
                                 </p>
-                                <p className="text-xs text-gray-500 mb-4">
-                                    Category:{" "}
-                                    <span className="text-gray-700 font-semibold">
-                                        {blog.category}
-                                    </span>
-                                </p>
-                                <div className="flex justify-between items-center mt-auto">
-                                    <button
-                                        onClick={() =>
-                                            handleWishList(blog._id, blog.category, blog.title)
-                                        }
-                                        className="px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white text-sm rounded-lg hover:opacity-90 transition-opacity"
-                                    >
-                                        Add to Wishlist
-                                    </button>
-                                    <Link
-                                        to={`/blogs/${blog._id}`}
-                                        className="text-purple-700 font-medium text-sm hover:underline"
-                                    >
-                                        View Details
-                                    </Link>
+                                <div className="text-sm font-medium text-gray-500 mt-2">
+                                    {blog.category}
                                 </div>
+                            </div>
+                            <div className="mt-4 flex justify-between items-center">
+                                <button
+                                    onClick={() =>
+                                        handleWishList(blog._id, blog.category, blog.title)
+                                    }
+                                    className="px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white text-sm rounded-lg hover:opacity-90 transition-opacity"
+                                >
+                                   Add to Wishlist
+                                </button>
+                                <Link to={`/blogs/${blog._id}`}>
+                                    <button className="text-purple-700 font-medium text-sm hover:underline">
+                                       View Details
+                                    </button>
+                                </Link>
+
                             </div>
                         </div>
                     ))}
@@ -216,8 +216,8 @@ const AllBlogs = () => {
                         {pages.map((page) => (
                             <button
                                 className={`px-3 py-1 rounded-md ${currentPage === page
-                                        ? "bg-purple-500 text-white"
-                                        : "bg-gray-300 hover:bg-gray-400"
+                                    ? "bg-purple-500 text-white"
+                                    : "bg-gray-300 hover:bg-gray-400"
                                     }`}
                                 onClick={() => setCurrentPage(page)}
                                 key={page}

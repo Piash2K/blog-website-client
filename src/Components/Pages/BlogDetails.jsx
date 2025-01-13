@@ -35,6 +35,7 @@ const BlogDetails = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
         .then((res) => res.json())
@@ -55,7 +56,7 @@ const BlogDetails = () => {
       fetch(`http://localhost:5000/comments/${_id}`)
         .then((res) => res.json())
         .then((data) => setComments(data))
-        .catch((error) => {});
+        .catch((error) => { });
     }
   }, [_id]);
 
@@ -75,7 +76,7 @@ const BlogDetails = () => {
       userName: user.displayName,
       userProfilePicture: user.photoURL,
       comment: commentText,
-    
+
     };
 
     fetch("http://localhost:5000/comments", {

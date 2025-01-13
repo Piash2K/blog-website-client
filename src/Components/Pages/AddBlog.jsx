@@ -38,7 +38,7 @@ const AddBlog = () => {
     const completeFormData = { ...formData, authorEmail, postedTime };
 
     axiosSecure
-      .post("/blogs", completeFormData)
+      .post("/blogs", completeFormData,{ withCredentials: "include" })
       .then((res) => {
         if (res.data.acknowledged) {
           Swal.fire({
