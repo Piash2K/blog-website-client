@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const FeaturedBlogs = () => {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ const FeaturedBlogs = () => {
   useEffect(() => {
     const fetchFeaturedBlogs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/featuredBlogs");
+        const response = await axios.get("https://blog-website-server-nine.vercel.app/featuredBlogs");
         setData(response.data.slice(0, 10)); // Top 10 featured blogs
       } catch (error) {
         console.error("Error fetching featured blogs:", error);
@@ -46,7 +47,7 @@ const FeaturedBlogs = () => {
     };
 
     axios
-      .post("http://localhost:5000/wishlist", newWishlist)
+      .post("https://blog-website-server-nine.vercel.app/wishlist", newWishlist)
       .then((res) => {
         if (res.status === 200 && res.data.acknowledged) {
           Swal.fire({
@@ -125,6 +126,7 @@ const FeaturedBlogs = () => {
 
   return (
     <div className="mt-8">
+      <Helmet><title>Featured Blogs | BlogWebsite</title></Helmet>
       <h2 className="text-center text-4xl font-bold mb-8">Top 10 Featured Blogs</h2>
       <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">
         <DataTable

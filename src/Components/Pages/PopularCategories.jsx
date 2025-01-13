@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const PopularCategories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/popularCategories")
+      .get("https://blog-website-server-nine.vercel.app/popularCategories")
       .then((res) => {
         setCategories(res.data);
       })

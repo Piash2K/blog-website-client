@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAxiosSecure from "../Axios/UseAxiosSecure";
+import { Helmet } from "react-helmet";
 
 
 const AddBlog = () => {
@@ -67,6 +68,7 @@ const AddBlog = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r  px-4">
+      <Helmet><title>Add Blog | BlogWebsite</title></Helmet>
       <form
         onSubmit={handleSubmit}
         className=" border rounded-lg shadow-lg p-8 w-full max-w-2xl space-y-6"

@@ -15,7 +15,7 @@ const Home = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <Helmet>Home | BlogWebsite</Helmet>
+            <Helmet><title>Home | BlogWebsite</title></Helmet>
             <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}

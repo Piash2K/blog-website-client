@@ -5,6 +5,7 @@ import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAxiosSecure from "../Axios/UseAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const WishList = () => {
   const [data, setData] = useState([]);
@@ -32,7 +33,7 @@ const WishList = () => {
   const handleRemove = async (itemId) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/wishlist/${itemId}`, { withCredentials: true, }
+        `https://blog-website-server-nine.vercel.app/wishlist/${itemId}`, { withCredentials: true, }
       );
       if (res.data.deletedCount > 0) {
         Swal.fire({
@@ -87,6 +88,7 @@ const WishList = () => {
 
   return (
     <div className="mt-8">
+      <Helmet><title>Wish List | BlogWebsite </title></Helmet>
       <h1 className="text-4xl font-bold text-center mb-8">Your Wishlist</h1>
       <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">
         <DataTable

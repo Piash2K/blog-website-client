@@ -10,7 +10,7 @@ const RecentComments = () => {
         const fetchRecentComments = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get("http://localhost:5000/recentComments");
+                const response = await axios.get("https://blog-website-server-nine.vercel.app/recentComments");
                 setComments(response.data);
                 setLoading(false);
             } catch (err) {

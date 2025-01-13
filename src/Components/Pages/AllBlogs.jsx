@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const AllBlogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -20,7 +21,7 @@ const AllBlogs = () => {
 
     // Fetch total blog count for pagination
     useEffect(() => {
-        fetch("http://localhost:5000/blogsCount")
+        fetch("https://blog-website-server-nine.vercel.app/blogsCount")
             .then((res) => res.json())
             .then((data) => {
                 setCount(data.count);
@@ -32,7 +33,7 @@ const AllBlogs = () => {
 
     // Fetch blogs based on pagination, category, and search query
     useEffect(() => {
-        const query = `http://localhost:5000/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""
+        const query = `https://blog-website-server-nine.vercel.app/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""
             }${searchQuery ? `&search=${searchQuery}` : ""}`;
 
         fetch(query)
@@ -86,7 +87,7 @@ const AllBlogs = () => {
         };
 
         axios
-            .post("http://localhost:5000/wishlist", newWishlist)
+            .post("https://blog-website-server-nine.vercel.app/wishlist", newWishlist)
             .then((res) => {
                 if (res.status === 200 && res.data.acknowledged) {
                     Swal.fire({
@@ -118,6 +119,7 @@ const AllBlogs = () => {
 
     return (
         <div className="shop-container p-4">
+            <Helmet><title>All Blogs | BlogWebsite </title></Helmet>
             <h1 className="text-3xl font-bold text-center mb-6">All Blogs</h1>
 
 

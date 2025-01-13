@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       {
         path: "/blogs/:id",
         element: <PrivateRoute><BlogDetails></BlogDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`,{
+        loader: ({ params }) => fetch(`https://blog-website-server-nine.vercel.app/blogs/${params.id}`,{
           credentials: "include",
         }),
       },
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <PrivateRoute><UpdateBlog></UpdateBlog></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/update/${params.id}`, {
+        loader: ({ params }) => fetch(`https://blog-website-server-nine.vercel.app/update/${params.id}`, {
           credentials: "include",
         }),
       }

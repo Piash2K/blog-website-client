@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const BlogDetails = () => {
   const data = useLoaderData();
@@ -31,7 +32,7 @@ const BlogDetails = () => {
   useEffect(() => {
     if (user?.email && _id) {
       setDataLoading(true);
-      fetch(`http://localhost:5000/blogs/${_id}`, {
+      fetch(`https://blog-website-server-nine.vercel.app/blogs/${_id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +54,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     if (_id) {
-      fetch(`http://localhost:5000/comments/${_id}`)
+      fetch(`https://blog-website-server-nine.vercel.app/comments/${_id}`)
         .then((res) => res.json())
         .then((data) => setComments(data))
         .catch((error) => { });
@@ -79,7 +80,7 @@ const BlogDetails = () => {
 
     };
 
-    fetch("http://localhost:5000/comments", {
+    fetch("https://blog-website-server-nine.vercel.app/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,6 +125,7 @@ const BlogDetails = () => {
 
   return (
     <div className="blog-details p-6 max-w-7xl mx-auto bg-white shadow-xl rounded-lg">
+      <Helmet><title>Blog Details | BlogWebsite</title></Helmet>
       <h1 className="text-4xl font-bold text-purple-700 mb-6">{title}</h1>
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <img
