@@ -11,44 +11,37 @@ const WishList = () => {
   const [data, setData] = useState([]);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchWishlist = async () => {
-      try {
-        const response = await axiosSecure.get(
-          `wishlist?email=${user.email}`
-        );
-        setData(response.data);
-      } catch (error) {
-        // console.error("Error fetching wishlist data:", error);
-      }
-    };
-
     if (user?.email) {
-      fetchWishlist();
+      axiosSecure.get(`wishlist?email=${user.email}`).then((response) => {
+        setData(response.data);
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
     }
   }, [user?.email, axiosSecure]);
 
   // Handle Remove Item
-  const handleRemove = async (itemId) => {
-    try {
-      const res = await axios.delete(
-        `https://blog-website-server-nine.vercel.app/wishlist/${itemId}`, { withCredentials: true, }
-      );
-      if (res.data.deletedCount > 0) {
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Item removed from Wishlist!",
-          showConfirmButton: true,
-        });
-        setData((prevData) => prevData.filter((item) => item._id !== itemId));
-      }
-    } catch (error) {
-      // console.error("Error removing item from wishlist:", error);
-    }
+  const handleRemove = (itemId) => {
+    axios
+      .delete(`https://blog-website-server-nine.vercel.app/wishlist/${itemId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Item removed from Wishlist!",
+            showConfirmButton: true,
+          });
+          setData((prevData) => prevData.filter((item) => item._id !== itemId));
+        }
+      });
   };
-
   // Table Columns
   const columns = [
     {
@@ -85,6 +78,14 @@ const WishList = () => {
       ),
     },
   ];
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="spinner-border animate-spin inline-block w-10 h-10 border-4 rounded-full border-purple-600 border-t-transparent"></div>
+      </div>
+    );
+}
 
   return (
     <div className="mt-8">

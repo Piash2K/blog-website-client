@@ -13,6 +13,7 @@ const AllBlogs = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const { user, loading } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(true);
 
     const categories = ["Technology", "News", "Business & Finance", "Lifestyle", "Education", "Entertainment"];
 
@@ -21,10 +22,12 @@ const AllBlogs = () => {
 
     // Fetch total blog count for pagination
     useEffect(() => {
+        setIsLoading(true);
         fetch("https://blog-website-server-nine.vercel.app/blogsCount")
             .then((res) => res.json())
             .then((data) => {
                 setCount(data.count);
+                setIsLoading(false);
             })
             .catch(() => {
                 // console.log('error', error.message)
@@ -33,6 +36,7 @@ const AllBlogs = () => {
 
     // Fetch blogs based on pagination, category, and search query
     useEffect(() => {
+        setIsLoading(true);
         const query = `https://blog-website-server-nine.vercel.app/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""
             }${searchQuery ? `&search=${searchQuery}` : ""}`;
 
@@ -40,9 +44,11 @@ const AllBlogs = () => {
             .then((res) => res.json())
             .then((data) => {
                 setBlogs(data);
+                setIsLoading(false);
             })
             .catch(() => {
                 // console.error('Error')
+                setIsLoading(false);
             });
 
     }, [currentPage, itemsPerPage, selectedCategory, searchQuery]);
@@ -117,6 +123,14 @@ const AllBlogs = () => {
             });
     };
 
+    if (loading || isLoading) {
+        return (
+          <div className="flex justify-center items-center h-screen">
+            <div className="spinner-border animate-spin inline-block w-10 h-10 border-4 rounded-full border-purple-600 border-t-transparent"></div>
+          </div>
+        );
+    }
+ 
     return (
         <div className="shop-container p-4">
             <Helmet><title>All Blogs | BlogWebsite </title></Helmet>
