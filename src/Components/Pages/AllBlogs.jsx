@@ -141,14 +141,14 @@ const AllBlogs = () => {
       <h1 className="text-5xl font-extrabold text-center my-12">All Blogs</h1>
 
       {/* Filter Bar */}
-      <div className="filter-bar flex flex-col md:flex-row items-center justify-between gap-4 mb-6 bg-gray-50 rounded-lg p-6 shadow-lg">
-        <div className="text-lg font-semibold text-gray-800">
+      <div className="filter-bar flex flex-col md:flex-row items-center justify-between gap-4 mb-6 rounded-lg p-6 shadow-lg">
+        <div className="text-lg font-semibold">
           Total Blogs: <span className="text-purple-600">{count}</span>
         </div>
 
         {/* Search Bar */}
-        <div className="flex items-center w-full md:w-auto px-4 py-2 bg-white rounded-md shadow-md border focus-within:border-purple-500">
-          <FaSearch className="text-gray-400 text-lg" />
+        <div className="flex items-center w-full md:w-auto px-4 py-2 rounded-md shadow-md border focus-within:border-purple-500">
+          <FaSearch className=" text-lg" />
           <input
             type="text"
             placeholder="Search blogs by title"
@@ -164,7 +164,7 @@ const AllBlogs = () => {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="p-2 bg-gray-100 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
+            className="p-2  border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
           >
             <option value="">All Categories</option>
             {categories.map((category) => (
@@ -181,7 +181,7 @@ const AllBlogs = () => {
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-            className="p-2 bg-gray-100 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
+            className="p-2  border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
           >
             <option value="">Sort By</option>
             <option value="newest">Newest</option>
@@ -206,10 +206,10 @@ const AllBlogs = () => {
             />
             <div className="mt-4">
               <h2 className="text-lg font-semibold">{blog.title}</h2>
-              <p className="text-gray-600 text-sm mt-2">
+              <p className=" text-sm mt-2">
                 {blog.shortDescription}
               </p>
-              <div className="text-sm font-medium text-gray-500 mt-2">
+              <div className="text-sm font-medium mt-2">
                 {blog.category}
               </div>
             </div>
@@ -218,7 +218,7 @@ const AllBlogs = () => {
                 onClick={() =>
                   handleWishList(blog._id, blog.category, blog.title)
                 }
-                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white text-sm rounded-lg hover:opacity-90 transition-opacity"
+                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-800  text-sm rounded-lg hover:opacity-90 transition-opacity"
               >
                 Add to Wishlist
               </button>
@@ -237,7 +237,7 @@ const AllBlogs = () => {
         <div className="flex gap-2">
           <button
             onClick={handlePrevPage}
-            className="px-3 py-1 bg-gray-300 rounded-md hover:bg-gray-400"
+            className="px-3 py-1  rounded-md"
           >
             Prev
           </button>
@@ -246,7 +246,7 @@ const AllBlogs = () => {
               className={`px-3 py-1 rounded-md ${
                 currentPage === page
                   ? "bg-purple-500 text-white"
-                  : "bg-gray-300 hover:bg-gray-400"
+                  : "bg-white "
               }`}
               onClick={() => setCurrentPage(page)}
               key={page}
@@ -256,7 +256,7 @@ const AllBlogs = () => {
           ))}
           <button
             onClick={handleNextPage}
-            className="px-3 py-1 bg-gray-300 rounded-md hover:bg-gray-400"
+            className="px-3 py-1  rounded-md "
           >
             Next
           </button>
