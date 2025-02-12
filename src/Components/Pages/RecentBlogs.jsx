@@ -62,8 +62,8 @@ const RecentBlogs = () => {
     };
 
     return (
-        <div className="max-w-screen-xl mx-auto py-8 px-4">
-            <div className="text-center text-5xl font-extrabold m-12">
+        <div className=" w-9/12 mx-auto">
+            <div className="text-center text-5xl font-extrabold my-12">
                 Recent Blogs
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

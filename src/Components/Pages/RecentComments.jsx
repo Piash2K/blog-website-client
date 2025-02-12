@@ -23,9 +23,9 @@ const RecentComments = () => {
     }, []);
 
     return (
-        <div className="recent-comments w-full">
-            <div className="max-w-screen-xl mx-auto px-6">
-                <h2 className="text-center text-5xl font-extrabold mb-12">
+        <div className="recent-comments w-9/12 mx-auto">
+            <div className="">
+                <h2 className="text-center text-5xl font-extrabold my-12">
                     Recent Comments
                 </h2>
 
@@ -38,11 +38,11 @@ const RecentComments = () => {
                         No recent comments available.
                     </p>
                 ) : (
-                    <div className="flex flex-wrap gap-8 justify-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {comments.map((comment) => (
                             <div
                                 key={comment._id}
-                                className="comment-card bg-white text-gray-800 rounded-lg shadow-lg overflow-hidden max-w-sm w-full transform transition-all duration-500 hover:scale-105"
+                                className="comment-card bg-white text-gray-800 rounded-lg shadow-lg overflow-hidden  transform transition-all duration-500 hover:scale-105"
                             >
                                 <div className="flex items-center gap-4 bg-gradient-to-r from-purple-600 to-purple-500 px-6 py-4">
                                     <img

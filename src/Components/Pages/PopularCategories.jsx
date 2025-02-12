@@ -19,13 +19,13 @@ const PopularCategories = () => {
 
   return (
     <motion.div
-      className="popular-categories w-full bg-white py-16 text-gray-800"
+      className="popular-categories w-full bg-white text-gray-800"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="max-w-screen-xl mx-auto px-6">
-        <h2 className="text-center text-5xl font-extrabold mb-12">Popular Categories</h2>
+      <div className="w-9/12 mx-auto">
+        <h2 className="text-center text-5xl font-extrabold my-12">Popular Categories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (
             <motion.div
