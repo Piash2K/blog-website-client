@@ -69,9 +69,9 @@ const Login = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+        <div className="flex justify-center items-center min-h-screen px-4">
             <Helmet><title>Login | BlogWebsite </title></Helmet>
-            <div className="w-full max-w-md p-6 bg-white border border-gray-200 shadow-lg rounded-lg">
+            <div className="w-full max-w-md p-6  shadow-lg rounded-lg">
                 <h1 className="text-2xl lg:text-4xl font-bold text-center mb-6">Login Now!</h1>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div className="form-control">
@@ -100,7 +100,7 @@ const Login = () => {
                         <button
                             type="button"
                             onClick={() => setShowPassWord(!showPassword)}
-                            className="absolute right-3 top-14 text-gray-500 text-lg"
+                            className="absolute right-3 top-14  text-lg"
                         >
                             {showPassword ? <FaEye /> : <FaEyeSlash />}
                         </button>
@@ -109,12 +109,12 @@ const Login = () => {
                         </Link>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary w-full">Login</button>
+                        <button className="btn bg-gradient-to-r from-purple-600 to-purple-800 w-full">Login</button>
                     </div>
                 </form>
                 <p className="mt-4 text-sm text-center">
                     New here?{' '}
-                    <Link to="/register" className="text-indigo-600 font-medium">
+                    <Link to="/register" className="text-purple-600 font-medium">
                         Register now
                     </Link>
                 </p>

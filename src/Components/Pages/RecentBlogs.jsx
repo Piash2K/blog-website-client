@@ -100,7 +100,7 @@ const RecentBlogs = () => {
                                 </button>
                                 <Link
                                     to={`/blogs/${blog._id}`}
-                                    className="text-purple-700 font-medium text-sm hover:underline"
+                                    className="px-4 py-2 border border-purple-700 text-purple-600  text-sm rounded-lg hover:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                                 >
                                     View Details
                                 </Link>

@@ -33,13 +33,10 @@ const AllBlogs = () => {
   // Function to fetch blogs with the current parameters
   const fetchBlogs = () => {
     setIsLoading(true);
-    const query = `https://blog-website-server-nine.vercel.app/blogs?page=${currentPage}&size=${itemsPerPage}${
-      selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""
-    }${
-      searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""
-    }${
-      sortOption ? `&sort=${encodeURIComponent(sortOption)}` : ""
-    }`;
+    const query = `https://blog-website-server-nine.vercel.app/blogs?page=${currentPage}&size=${itemsPerPage}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ""
+      }${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""
+      }${sortOption ? `&sort=${encodeURIComponent(sortOption)}` : ""
+      }`;
 
     fetch(query)
       .then((res) => res.json())
@@ -59,7 +56,7 @@ const AllBlogs = () => {
       .then((data) => {
         setCount(data.count);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const handleItemsPerPage = (e) => {
@@ -141,14 +138,14 @@ const AllBlogs = () => {
       <h1 className="text-5xl font-extrabold text-center my-12">All Blogs</h1>
 
       {/* Filter Bar */}
-      <div className="filter-bar flex flex-col md:flex-row items-center justify-between gap-4 mb-6 rounded-lg p-6 shadow-lg">
-        <div className="text-lg font-semibold">
+      <div className="filter-bar flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 mb-6 rounded-lg p-6 shadow-lg">
+        <div className="text-lg font-semibold w-full md:w-auto">
           Total Blogs: <span className="text-purple-600">{count}</span>
         </div>
 
         {/* Search Bar */}
         <div className="flex items-center w-full md:w-auto px-4 py-2 rounded-md shadow-md border focus-within:border-purple-500">
-          <FaSearch className=" text-lg" />
+          <FaSearch className="text-lg" />
           <input
             type="text"
             placeholder="Search blogs by title"
@@ -159,12 +156,12 @@ const AllBlogs = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 w-full md:w-auto">
           <FaFilter className="text-purple-600 text-xl" />
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="p-2  border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
+            className="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm w-full"
           >
             <option value="">All Categories</option>
             {categories.map((category) => (
@@ -176,12 +173,12 @@ const AllBlogs = () => {
         </div>
 
         {/* Sort Option */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 w-full md:w-auto">
           <FaSort className="text-purple-600 text-xl" />
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-            className="p-2  border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm"
+            className="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm w-full"
           >
             <option value="">Sort By</option>
             <option value="newest">Newest</option>
@@ -191,6 +188,7 @@ const AllBlogs = () => {
           </select>
         </div>
       </div>
+
 
       {/* Blogs Grid */}
       <div className="products-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -223,9 +221,10 @@ const AllBlogs = () => {
                 Add to Wishlist
               </button>
               <Link to={`/blogs/${blog._id}`}>
-                <button className="text-purple-700 font-medium text-sm hover:underline">
+                <button className="px-4 py-2 border border-purple-700 text-purple-600  text-sm rounded-lg hover:border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300">
                   View Details
                 </button>
+
               </Link>
             </div>
           </div>
@@ -243,11 +242,10 @@ const AllBlogs = () => {
           </button>
           {pages.map((page) => (
             <button
-              className={`px-3 py-1 rounded-md ${
-                currentPage === page
+              className={`px-3 py-1 rounded-md ${currentPage === page
                   ? "bg-purple-500 text-white"
                   : "bg-white "
-              }`}
+                }`}
               onClick={() => setCurrentPage(page)}
               key={page}
             >
