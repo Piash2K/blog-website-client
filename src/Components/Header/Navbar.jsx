@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import DarkMode from "../DarkMode/DarkMode";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -106,6 +107,8 @@ const Navbar = () => {
         <div className="hidden lg:flex lg:space-x-6">{links}</div>
 
         {/* Navbar End */}
+        
+        <div className="flex gap-4 items-center">
         <div className="flex items-center space-x-4">
           {user ? (
             <>
@@ -143,6 +146,8 @@ const Navbar = () => {
               </Link>
             </div>
           )}
+        </div>
+        <DarkMode></DarkMode>
         </div>
       </div>
     </nav>
