@@ -90,7 +90,7 @@ const WishList = () => {
   return (
     <div className="mt-8">
       <Helmet><title>Wish List | BlogWebsite </title></Helmet>
-      <h1 className="text-4xl font-bold text-center mb-8">Your Wishlist</h1>
+      <h1 className="text-5xl font-extrabold text-center my-12">Your Wishlist</h1>
       <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">
         <DataTable
           columns={columns}

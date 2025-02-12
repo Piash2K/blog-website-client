@@ -127,7 +127,7 @@ const FeaturedBlogs = () => {
   return (
     <div className="mt-8">
       <Helmet><title>Featured Blogs | BlogWebsite</title></Helmet>
-      <h2 className="text-center text-4xl font-bold mb-8">Top 10 Featured Blogs</h2>
+      <h2 className="text-5xl font-extrabold text-center my-12">Top 10 Featured Blogs</h2>
       <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">
         <DataTable
           columns={columns}
