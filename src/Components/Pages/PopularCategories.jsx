@@ -19,7 +19,7 @@ const PopularCategories = () => {
 
   return (
     <motion.div
-      className="popular-categories w-full bg-white text-gray-800"
+      className="popular-categories w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}

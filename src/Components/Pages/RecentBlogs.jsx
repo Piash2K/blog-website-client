@@ -70,7 +70,7 @@ const RecentBlogs = () => {
                 {recent.map((blog) => (
                     <div
                         key={blog._id}
-                        className="rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col bg-gradient-to-r from-gray-100 via-white to-gray-100 border border-gray-200"
+                        className="rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col "
                     >
                         <img
                             src={blog.imageUrl}
@@ -78,15 +78,15 @@ const RecentBlogs = () => {
                             className="w-full h-48 object-cover"
                         />
                         <div className="p-6 flex flex-col flex-grow">
-                            <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+                            <h3 className="text-2xl font-semibold mb-3">
                                 {blog.title}
                             </h3>
-                            <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+                            <p className=" mb-4 text-sm leading-relaxed">
                                 {blog.shortDescription.length > 120
                                     ? `${blog.shortDescription.slice(0, 120)}...`
                                     : blog.shortDescription}
                             </p>
-                            <p className="text-xs text-gray-500 mb-4">
+                            <p className="text-xs mb-4">
                                 Posted on {new Date(blog.postedTime).toLocaleDateString()}
                             </p>
                             <div className="flex justify-between items-center mt-auto">
