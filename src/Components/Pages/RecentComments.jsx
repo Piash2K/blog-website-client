@@ -23,7 +23,7 @@ const RecentComments = () => {
     }, []);
 
     return (
-        <div className="recent-comments w-9/12 mx-auto">
+        <div className="recent-comments w-11/12 md:w-9/12 mx-auto">
             <div className="">
                 <h2 className="text-center text-5xl font-extrabold my-12">
                     Recent Comments

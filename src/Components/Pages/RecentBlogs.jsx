@@ -62,7 +62,7 @@ const RecentBlogs = () => {
     };
 
     return (
-        <div className=" w-9/12 mx-auto">
+        <div className="w-11/12 md:w-9/12 mx-auto">
             <div className="text-center text-5xl font-extrabold my-12">
                 Recent Blogs
             </div>

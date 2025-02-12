@@ -24,7 +24,7 @@ const PopularCategories = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="w-9/12 mx-auto">
+      <div className="w-11/12 md:w-9/12 mx-auto">
         <h2 className="text-center text-5xl font-extrabold my-12">Popular Categories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (

@@ -72,7 +72,7 @@ const WishList = () => {
             onClick={() => handleRemove(row._id)}
             className="px-5 py-2 rounded-md ml-2 text-white bg-pink-600 hover:bg-pink-700 transition duration-200"
           >
-            Remove
+            Delete
           </button>
         </div>
       ),

@@ -20,11 +20,11 @@ const Newsletter = () => {
     <section
       className=" bg-gradient-to-r from-gray-100 via-white to-gray-200 text-gray-800 pb-12 mt-4"
     >
-      <div className="container mx-auto text-center">
+      <div className="w-11/12  mx-auto text-center">
         <h2 className="text-5xl sm:text-5xl font-extrabold py-12 text-gray-900">
           Stay Informed, Stay Inspired
         </h2>
-        <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-700">
+        <p className="text-lg sm:text-xl mb-8 w-11/12 max-w-2xl mx-auto text-gray-700">
           Subscribe to our newsletter and be the first to know about our latest blog posts, exclusive content, and special updates. 
           Join our community to stay inspired and never miss a moment!
         </p>

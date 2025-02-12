@@ -136,7 +136,7 @@ const AllBlogs = () => {
   }
 
   return (
-    <div className="w-9/12 mx-auto mb-12">
+    <div className="w-11/12 md:w-9/12 mx-auto mb-12">
       <Helmet><title>All Blogs | BlogWebsite</title></Helmet>
       <h1 className="text-5xl font-extrabold text-center my-12">All Blogs</h1>
 

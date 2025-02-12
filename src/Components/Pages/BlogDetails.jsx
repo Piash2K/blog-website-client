@@ -124,7 +124,7 @@ const BlogDetails = () => {
   }
 
   return (
-    <div className="blog-details p-6 max-w-7xl mx-auto bg-white shadow-xl rounded-lg">
+    <div className="blog-details p-6 max-w-7xl mx-auto shadow-xl rounded-lg">
       <Helmet><title>Blog Details | BlogWebsite</title></Helmet>
       <h1 className="text-4xl font-bold text-purple-700 mb-6">{title}</h1>
       <div className="flex flex-col md:flex-row gap-6 mb-8">
@@ -135,10 +135,10 @@ const BlogDetails = () => {
         />
         <div className="text-content md:w-1/2">
           <p className="text-sm text-purple-500 mb-3 uppercase">{category}</p>
-          <p className="text-xl text-gray-700 font-semibold mb-4">
+          <p className="text-xl  font-semibold mb-4">
             {shortDescription}
           </p>
-          <p className="text-base text-gray-600 leading-relaxed">
+          <p className="text-base leading-relaxed">
             {longDescription}
           </p>
 
@@ -171,7 +171,7 @@ const BlogDetails = () => {
                 <p className="text-lg font-bold text-purple-600">
                   {comment.userName}
                 </p>
-                <p className="text-sm text-gray-600 mt-1">{comment.comment}</p>
+                <p className="text-sm  mt-1">{comment.comment}</p>
               </div>
             </div>
           ))}
