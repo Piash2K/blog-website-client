@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 const PopularCategories = () => {
   const [categories, setCategories] = useState([]);
 
+  // fetching data popular categories blog
   useEffect(() => {
     axios
       .get("https://blog-website-server-nine.vercel.app/popularCategories")

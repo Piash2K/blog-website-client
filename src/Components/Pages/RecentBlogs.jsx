@@ -8,6 +8,7 @@ const RecentBlogs = () => {
     const [recent, setRecent] = useState([]);
     const { user } = useContext(AuthContext);
 
+    // fetching data for recenblogs
     useEffect(() => {
         axios
             .get("https://blog-website-server-nine.vercel.app/recentBlogs")
@@ -33,6 +34,7 @@ const RecentBlogs = () => {
             title,
         };
 
+        // send wishlist data to backend
         axios
             .post("https://blog-website-server-nine.vercel.app/wishlist", newWishlist)
             .then((res) => {
