@@ -88,7 +88,7 @@ const WishList = () => {
 }
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 min-h-screen">
       <Helmet><title>Wish List | BlogWebsite </title></Helmet>
       <h1 className="text-5xl font-extrabold text-center my-12">Your Wishlist</h1>
       <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">

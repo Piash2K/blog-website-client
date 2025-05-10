@@ -125,7 +125,7 @@ const FeaturedBlogs = () => {
   }
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 min-h-screen">
       <Helmet><title>Featured Blogs | BlogWebsite</title></Helmet>
       <h2 className="text-5xl font-extrabold text-center my-12">Top 10 Featured Blogs</h2>
       <div className="overflow-x-auto shadow-xl rounded-lg w-11/12 mx-auto">
